@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economics Pro | HSC Learning</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#14264b}
+header{background:#102d62;color:white;padding:22px 16px}
+nav{max-width:1050px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-size:23px;font-weight:bold}
+.logo span{background:#ffbd24;color:#102d62;padding:5px 10px;border-radius:8px}
+nav button,.btn{border:0;background:#ffbd24;color:#102d62;padding:11px 17px;border-radius:8px;font-weight:bold;cursor:pointer}
+main{max-width:1050px;margin:25px auto;padding:0 15px}
+.hero{background:linear-gradient(120deg,#123875,#2677d8);color:white;padding:35px 25px;border-radius:18px}
+.hero h1{font-size:32px;margin:0 0 12px}
+.hero p{line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:22px 0}
+.card{background:white;padding:22px;border-radius:14px;box-shadow:0 4px 18px #102d6210}
+.card h3{margin-top:5px}
+.muted{color:#687895;line-height:1.6}
+.section-title{margin-top:30px}
+.btn{background:#1559b7;color:white;margin-top:10px}
+.btn.gold{background:#ffbd24;color:#102d62}
+button:disabled{opacity:.5}
+.hidden{display:none}
+input{width:100%;padding:13px;border:1px solid #ccd5e5;border-radius:8px;margin:7px 0 12px}
+.option{display:block;width:100%;text-align:left;padding:13px;margin:9px 0;border:1px solid #d7dfed;background:#fff;border-radius:9px;cursor:pointer;color:#14264b}
+.option.selected{border:2px solid #1765c5;background:#edf5ff}
+#timer{font-weight:bold;color:#d34a37}
+footer{text-align:center;padding:25px;color:#73809a}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">🎓 Economics <span>Pro</span></div>
+<button onclick="show('login')">Student Login</button>
+</nav>
+</header>
+
+<main>
+<section id="home">
+<div class="hero">
+<h1>স্বাগতম Economics Pro-তে</h1>
+<p>HSC অর্থনীতি পরীক্ষার প্রস্তুতি হোক আরও সহজ, নিয়মিত MCQ অনুশীলন ও অনলাইন পরীক্ষার মাধ্যমে।</p>
+<button class="btn gold" onclick="show('subjects')">পরীক্ষা শুরু করো →</button>
+</div>
+
+<h2 class="section-title">আমাদের বিষয়সমূহ</h2>
+<div class="grid">
+<div class="card">
+<h3>📘 অর্থনীতি ১ম পত্র</h3>
+<p class="muted">প্রথম পত্রের অধ্যায়ভিত্তিক MCQ অনুশীলন ও পরীক্ষা।</p>
+<button class="btn" onclick="startExam(1)">পরীক্ষা দাও</button>
+</div>
+<div class="card">
+<h3>📗 অর্থনীতি ২য় পত্র</h3>
+<p class="muted">দ্বিতীয় পত্রের অধ্যায়ভিত্তিক MCQ অনুশীলন ও পরীক্ষা।</p>
+<button class="btn" onclick="startExam(2)">পরীক্ষা দাও</button>
+</div>
+<div class="card">
+<h3>📝 অনলাইন পরীক্ষা</h3>
+<p class="muted">২০টি প্রশ্ন, ২০ মিনিট সময়, ভুল উত্তরে নম্বর কাটা নেই।</p>
+<button class="btn" onclick="startExam(1)">পরীক্ষা শুরু</button>
+</div>
+<div class="card">
+<h3>📚 PDF নোট ও বই</h3>
+<p class="muted">শিক্ষামূলক PDF নোট ও বইয়ের জন্য এই বিভাগ।</p>
+<p>শীঘ্রই যুক্ত হবে।</p>
+</div>
+</div>
+</section>
+
+<section id="subjects" class="hidden">
+<div class="card">
+<h2>বিষয় নির্বাচন</h2>
+<button class="btn" onclick="startExam(1)">অর্থনীতি ১ম পত্র</button>
+<button class="btn" onclick="startExam(2)">অর্থনীতি ২য় পত্র</button>
+<button class="btn gold" onclick="show('home')">ফিরে যাও</button>
+</div>
+</section>
+
+<section id="login" class="hidden">
+<div class="card">
+<h2>Student Login / Registration</h2>
+<p class="muted">এটি প্রাথমিক Demo Login Form। এখনো আসল অ্যাকাউন্ট তৈরি বা সংরক্ষণ চালু হয়নি।</p>
+<label>শিক্ষার্থীর নাম</label><input id="studentName" placeholder="তোমার নাম">
+<label>ইমেইল</label><input type="email" placeholder="Email address">
+<label>Password</label><input type="password" placeholder="Password">
+<button class="btn" onclick="alert('Demo form: আসল Login চালু করতে Backend প্রয়োজন।')">Login / Register</button>
+<button class="btn gold" onclick="show('home')">ফিরে যাও</button>
+</div>
+</section>
+
+<section id="exam" class="hidden">
+<div class="card">
+<h2 id="examTitle">MCQ পরীক্ষা</h2>
+<p>সময় বাকি: <span id="timer">20:00</span> | প্রশ্ন: <span id="progress">1/20</span></p>
+<div id="questionArea"></div>
+<button class="btn" id="nextBtn" onclick="nextQuestion()">পরবর্তী প্রশ্ন</button>
+<button class="btn gold" onclick="finishExam()">পরীক্ষা শেষ করো</button>
+</div>
+</section>
+
+<section id="result" class="hidden">
+<div class="card">
+<h2>তোমার পরীক্ষার ফলাফল</h2>
+<div id="resultText"></div>
+<div id="review"></div>
+<button class="btn" onclick="show('home')">হোম পেজে যাও</button>
+</div>
+</section>
+</main>
+
+<footer>© 2026 Economics Pro | HSC Economics Learning Platform</footer>
+
+<script>
+const questions=[
+{q:"অর্থনীতির জনক কে?",o:["অ্যাডাম স্মিথ","মার্শাল","কেইনস","রিকার্ডো"],a:0,e:"অ্যাডাম স্মিথকে অর্থনীতির জনক বলা হয়।"},
+{q:"অর্থনীতির মূল সমস্যা কয়টি?",o:["২টি","৩টি","৪টি","৫টি"],a:2,e:"প্রচলিতভাবে মৌলিক অর্থনৈতিক সমস্যা চারটি হিসেবে আলোচনা করা হয়।"},
+{q:"চাহিদার সূত্রে দাম বাড়লে সাধারণত কী হয়?",o:["চাহিদা বাড়ে","চাহিদা কমে","যোগান কমে","কিছুই হয় না"],a:1,e:"অন্যান্য বিষয় অপরিবর্তিত থাকলে দাম বাড়লে চাহিদার পরিমাণ কমে।"},
+{q:"GDP-এর পূর্ণরূপ কী?",o:["Gross Domestic Product","General Domestic Price","Gross Development Plan","Global Domestic Product"],a:0,e:"GDP অর্থ Gross Domestic Product।"},
+{q:"বাংলাদেশের কেন্দ্রীয় ব্যাংক কোনটি?",o:["সোনালী ব্যাংক","বাংলাদেশ ব্যাংক","জনতা ব্যাংক","অগ্রণী ব্যাংক"],a:1,e:"বাংলাদেশ ব্যাংক দেশের কেন্দ্রীয় ব্যাংক।"},
+{q:"উৎপাদনের উপকরণ কয়টি?",o:["২টি","৩টি","৪টি","৫টি"],a:2,e:"ভূমি, শ্রম, মূলধন ও সংগঠন—চারটি প্রধান উপকরণ।"},
+{q:"মুদ্রাস্ফীতি বলতে কী বোঝায়?",o:["দামস্তর বৃদ্ধি","দামস্তর হ্রাস","উৎপাদন হ্রাস","বেকারত্ব হ্রাস"],a:0,e:"সাধারণ মূল্যস্তরের ধারাবাহিক বৃদ্ধিকে মুদ্রাস্ফীতি বলে।"},
+{q:"যোগানের সূত্রে দাম বাড়লে কী হয়?",o:["যোগান কমে","যোগান বাড়ে","চাহিদা বাড়ে","চাহিদা কমে"],a:1,e:"অন্যান্য বিষয় অপরিবর্তিত থাকলে দাম বাড়লে যোগানের পরিমাণ বাড়ে।"},
+{q:"মাথাপিছু আয় কীভাবে পাওয়া যায়?",o:["জাতীয় আয় × জনসংখ্যা","জাতীয় আয় ÷ জনসংখ্যা","জনসংখ্যা ÷ জাতীয় আয়","সঞ্চয় ÷ বিনিয়োগ"],a:1,e:"মাথাপিছু আয় = জাতীয় আয় ÷ মোট জনসংখ্যা।"},
+{q:"বাজেট সাধারণত কে উপস্থাপন করেন?",o:["রাষ্ট্রপতি","অর্থমন্ত্রী","স্পিকার","গভর্নর"],a:1,e:"জাতীয় বাজেট অর্থমন্ত্রী উপস্থাপন করেন।"},
+{q:"সুযোগ ব্যয় কী?",o:["মোট ব্যয়","পরিত্যক্ত পরবর্তী সেরা বিকল্পের মূল্য","স্থায়ী ব্যয়","গড় ব্যয়"],a:1,e:"একটি বিকল্প বেছে নেওয়ার কারণে ত্যাগ করা পরবর্তী সেরা বিকল্পের মূল্যই সুযোগ ব্যয়।"},
+{q:"বাজারে একক বিক্রেতা থাকলে তাকে কী বলে?",o:["পূর্ণ প্রতিযোগিতা","একচেটিয়া বাজার","অলিগোপলি","দ্বৈত বাজার"],a:1,e:"একজন বিক্রেতার বাজারকে একচেটিয়া বাজার বলে।"},
+{q:"সঞ্চয় কী?",o:["আয়-ভোগ","ভোগ-আয়","ব্যয়-লাভ","লাভ-কর"],a:0,e:"আয়ের যে অংশ ভোগে ব্যয় হয় না, তা সঞ্চয়।"},
+{q:"কর কী?",o:["স্বেচ্ছা অনুদান","বাধ্যতামূলক সরকারি রাজস্ব","ব্যক্তিগত ঋণ","ব্যবসায়িক লাভ"],a:1,e:"কর হলো সরকারের আরোপিত বাধ্যতামূলক রাজস্ব।"},
+{q:"বেকারত্ব বলতে কী বোঝায়?",o:["কাজ করতে অনিচ্ছুক","কাজের যোগ্য ও ইচ্ছুক হয়েও কাজ না পাওয়া","শিক্ষার্থী হওয়া","অবসর নেওয়া"],a:1,e:"কাজের যোগ্য ও ইচ্ছুক ব্যক্তি কাজ না পেলে তাকে বেকার বলা হয়।"},
+{q:"রপ্তানি বলতে কী বোঝায়?",o:["বিদেশ থেকে পণ্য আনা","বিদেশে পণ্য বিক্রি","দেশে পণ্য উৎপাদন","পণ্য মজুত"],a:1,e:"দেশ থেকে বিদেশে পণ্য বা সেবা বিক্রি করাকে রপ্তানি বলে।"},
+{q:"বিনিয়োগের একটি প্রধান উৎস কী?",o:["সঞ্চয়","ভোগ","আমদানি","কর ফাঁকি"],a:0,e:"সঞ্চয় বিনিয়োগের অন্যতম প্রধান উৎস।"},
+{q:"মৌলিক অর্থনৈতিক সমস্যা কেন সৃষ্টি হয়?",o:["সম্পদ সীমিত","চাহিদা সীমিত","সম্পদ অসীম","উৎপাদন নেই"],a:0,e:"সীমিত সম্পদ ও অসীম অভাবের কারণে অর্থনৈতিক সমস্যা সৃষ্টি হয়।"},
+{q:"জাতীয় আয় কোন সময়ের আয় নির্দেশ করে?",o:["এক দিন","এক মাস","সাধারণত এক বছর","এক সপ্তাহ"],a:2,e:"জাতীয় আয় সাধারণত এক বছরের হিসাব।"},
+{q:"চাহিদা ও যোগান যেখানে সমান হয় তাকে কী বলে?",o:["ঘাটতি","উদ্বৃত্ত","ভারসাম্য","মুনাফা"],a:2,e:"চাহিদা ও যোগান সমান হলে বাজার ভারসাম্য প্রতিষ্ঠিত হয়।"}
+];
+let index=0,answers=[],seconds=1200,clock,subject=1;
+function show(id){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');}
+function startExam(s){
+subject=s;index=0;answers=Array(questions.length).fill(null);seconds=1200;
+document.getElementById('examTitle').textContent='অর্থনীতি '+(s===1?'১ম':'২য়')+' পত্র MCQ পরীক্ষা';
+show('exam');renderQuestion();clearInterval(clock);
+clock=setInterval(()=>{seconds--;document.getElementById('timer').textContent=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');if(seconds<=0)finishExam();},1000);
+}
+function renderQuestion(){
+let q=questions[index];document.getElementById('progress').textContent=(index+1)+'/20';
+document.getElementById('questionArea').innerHTML='<h3>'+(index+1)+'. '+q.q+'</h3>'+q.o.map((v,i)=>'<button class="option '+(answers[index]===i?'selected':'')+'" onclick="choose('+i+')">'+String.fromCharCode(65+i)+'. '+v+'</button>').join('');
+document.getElementById('nextBtn').textContent=index===19?'ফলাফল দেখো':'পরবর্তী প্রশ্ন';
+}
+function choose(i){answers[index]=i;renderQuestion();}
+function nextQuestion(){if(index<19){index++;renderQuestion()}else finishExam();}
+function finishExam(){
+clearInterval(clock);let correct=0,wrong=0,review='';
+questions.forEach((q,i)=>{if(answers[i]===q.a)correct++;else if(answers[i]!==null)wrong++;review+='<p><b>'+(i+1)+'. '+q.q+'</b><br>সঠিক উত্তর: '+q.o[q.a]+'<br><span class="muted">ব্যাখ্যা: '+q.e+'</span></p><hr>'});
+let percent=correct/20*100;
+document.getElementById('resultText').innerHTML='<h3>প্রাপ্ত নম্বর: '+correct+'/20</h3><p>সঠিক উত্তর: '+correct+' | ভুল উত্তর: '+wrong+' | উত্তর দাওনি: '+(20-correct-wrong)+'</p><p>শতকরা হার: '+percent.toFixed(1)+'%</p><p>ভুল উত্তরে কোনো নম্বর কাটা হয়নি।</p>';
+document.getElementById('review').innerHTML='<h3>প্রশ্নের সঠিক উত্তর ও ব্যাখ্যা</h3>'+review;show('result');
+}
+</script>
+</body>
+</html>
